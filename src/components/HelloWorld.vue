@@ -1,13 +1,32 @@
-<template>
-  <div class="container">
-    <div class="large-12 medium-12 small-12 cell">
-      <label>File
+<template >
+    <!--<div >
         <input type="file" id="file" name="myfile" ref="file" v-on:change="handleFileUpload(this)"/>
-      </label>
+        <label for="file" class="btn-2">upload</label>
       <button v-show="showSubmit" v-on:click="submitFile()">Submit</button>
+    </div>-->
+  <div style="background-color: #31c1ef;height: 100vh ">
+  <div class="wrapper" v-if="showUpload">
+      <p>Upload file <code>pdf</code> here</p>
+      <input type="file" id="file" name="myfile" ref="file" v-on:change="handleFileUpload(this) " accept=".pdf"/>
+      <label for="file" class="btn-2">upload</label>
+      <p class="footer">by <a href="https://github.com/xuanquan98/frontend" target="_blank">Vu Xuan Quan</a></p>
+  </div>
+    <div class="row" style="height: 100vh" v-if="!showUpload">
+      <div class="col">
+        <div class="item button-hand" style="--bg-color: #3498db;" >
+          <button v-on:click="submitFile()">Submit
+          </button>
+          <div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <embed v-bind:src = "imagePreview" width="500px" height="100vh"/>
+        <embed src="https://drive.google.com/viewerng/
+viewer?embedded=true&url=http://example.com/the.pdf" width="500" height="375">
+      </div>
     </div>
-    <embed src="http://placehold.it/180" width="800px" height="2100px" />
   </div>
 </template>
 <script src="./HelloWorld.js"></script>
-<style scoped src="./HelloWorld.css"></style>
+<style scoped src="./HelloWorld.scss"></style>

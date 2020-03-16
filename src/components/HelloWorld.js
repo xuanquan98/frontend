@@ -8,10 +8,13 @@ import VueAxios from 'vue-axios'
 Vue.use(BootstrapVue, axios, VueAxios)
 
 export default {
+  name: 'FileField',
   data () {
     return {
       file: '',
-      showSubmit: false
+      showSubmit: false,
+      showUpload: true,
+      imagePreview: ''
     }
   },
 
@@ -54,7 +57,15 @@ export default {
     */
     handleFileUpload () {
       this.file = this.$refs.file.files[0]
+      let reader = new FileReader()
+      reader.addEventListener('load', function () {
+        this.imagePreview = reader.result
+      }.bind(this), false)
+      reader.readAsDataURL( this.file )
+      console.log(this.imagePreview)
+      console.log(this.file)
       this.showSubmit = true
+      this.showUpload = false
     }
   }
 }
