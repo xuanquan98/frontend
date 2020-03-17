@@ -21,9 +21,7 @@
         </div>
       </div>
       <div class="col">
-        <embed v-bind:src = "imagePreview" width="500px" height="100vh"/>
-        <embed src="https://drive.google.com/viewerng/
-viewer?embedded=true&url=http://example.com/the.pdf" width="500" height="375">
+        <embed v-bind:src = "imagePreview" width="90%" height="100%"/>
       </div>
     </div>
   </div>
