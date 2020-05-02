@@ -14,8 +14,17 @@
     <div class="row" style="height: 100vh" v-if="!showUpload">
       <div class="col">
         <div class="item button-hand" style="--bg-color: #3498db;" >
-          <button v-on:click="submitFile()">Submit
-          </button>
+          <button v-on:click="submitFile()" v-if="showSubmit">Submit</button>
+          <div v-if="!showSubmit" style="color: white">
+            <h2>Information: </h2>
+            <li v-for="(value, name) in infor">
+              {{ name }}: {{ value }}
+            </li>
+            <h2>Skills: </h2>
+            <li v-for="(value, name) in skill">
+              {{ name }}: {{ value }}
+            </li>
+          </div>
           <div>
           </div>
         </div>

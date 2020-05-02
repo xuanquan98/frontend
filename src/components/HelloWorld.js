@@ -14,7 +14,10 @@ export default {
       file: '',
       showSubmit: false,
       showUpload: true,
-      imagePreview: ''
+      imagePreview: '',
+      showRes: false,
+      infor: '',
+      skill: ''
     }
   },
 
@@ -44,7 +47,12 @@ export default {
             'Content-Type': 'multipart/form-data'
           }
         }
-      ).then(function () {
+      ).then(data => {
+        var res = data.data
+        this.showSubmit = false
+        this.infor = res.information
+        this.skill = res.skills
+        console.log(this.infor)
         console.log('SUCCESS!!')
       })
         .catch(function () {
