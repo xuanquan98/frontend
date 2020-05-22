@@ -2,15 +2,11 @@
   <div>
     <div>
       <b-navbar toggleable="lg" type="dark" variant="info">
-        <b-navbar-brand href="#" style="color: white">Admin</b-navbar-brand>
+        <b-navbar-brand href="#" style="color: white">KLTN</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav>
-            <b-nav-item href="#">Link</b-nav-item>
-            <b-nav-item href="#" disabled>Disabled</b-nav-item>
-          </b-navbar-nav>
 
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
@@ -20,17 +16,17 @@
                 <em>{{user}}</em>
               </template>
               <b-dropdown-item href="#">Profile</b-dropdown-item>
-              <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+              <b-dropdown-item href="#" @click="logout">Sign Out</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
     </div>
-    <div class="md-layout md-gutter" style="text-align: center">
-      <div class="md-layout-item" style="margin-right: 5%">
+    <div class="md-layout md-gutter" style="text-align: center; padding-top: 1%">
+      <div class="md-layout-item" style="padding-left: 15%">
         <md-field >
           <label for="month">Month</label>
-          <md-select v-model="month" name="month" id="month" placeholder="Month" @input = "demo" @change="demo">
+          <md-select v-model="month" name="month" id="month" placeholder="Month" @input = "getCv" @change="getCv">
             <md-option value="01">1</md-option>
             <md-option value="02">2</md-option>
             <md-option value="03">3</md-option>
@@ -47,10 +43,10 @@
         </md-field>
       </div>
 
-      <div class="md-layout-item" style="margin-left: 5%">
+      <div class="md-layout-item" style="padding-right: 15%">
         <md-field>
           <label for="year">Year</label>
-          <md-select v-model="year" name="year" id="year" placeholder="Year" @input = "demo" @change="demo">
+          <md-select v-model="year" name="year" id="year" placeholder="Year" @input = "getCv" @change="getCv">
             <md-option value="2018">2018</md-option>
             <md-option value="2019">2019</md-option>
             <md-option value="2020">2020</md-option>
@@ -86,7 +82,7 @@
         <md-table-head > Gender </md-table-head>
         <md-table-head > Date of birth </md-table-head>
       </md-table-row>
-      <md-table-row id ="timesheet-table" v-for="(item) in cvs">
+      <md-table-row id ="timesheet-table" v-for="(item) in cvs" @click="demo(item)">
         <md-table-cell >{{item.id }}</md-table-cell>
         <md-table-cell><a v-bind:href = item.link target="_blank">{{ item.nameCv }}</a></md-table-cell>
         <md-table-cell>{{ item.fullName }}</md-table-cell>
@@ -98,6 +94,60 @@
         <md-table-cell></md-table-cell>
       </md-table-row>
     </md-table>
+
+    <div name="modal" v-if="showButtonEdit">
+      <div class="modal-mask">
+        <div class="modal-wrapper">
+          <div class="modal-container">
+            <md-button class="md-raised md-primary" @click="update">edit</md-button>
+            <md-button class="md-raised md-primary" @click="deleteCv">delete</md-button>
+            <md-button class="md-raised md-accent" @click="showButtonEdit = false">Cancel</md-button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div name="modal" v-if="showEditModal">
+      <div class="modal-mask">
+        <div class="modal-wrapper">
+          <div class="modal-container">
+            <h3>Id: {{itemCv.id}}</h3>
+            <md-field>
+              <label>Name Cv</label>
+              <md-input v-model="nameCv"></md-input>
+            </md-field>
+            <md-field>
+              <label>Full name</label>
+              <md-input v-model="fullname"></md-input>
+            </md-field>
+            <md-field>
+              <label>Email</label>
+              <md-input v-model="email"></md-input>
+            </md-field>
+            <md-field>
+              <label>Phone</label>
+              <md-input v-model="phone"></md-input>
+            </md-field>
+            <md-field>
+              <label>Gender</label>
+              <md-input v-model="gender"></md-input>
+            </md-field>
+            <md-field>
+              <label>Date of birth</label>
+              <md-input v-model="dateOfBirth"></md-input>
+            </md-field>
+            <md-field>
+              <label>Skill</label>
+              <md-textarea v-model="skill"></md-textarea>
+            </md-field>
+
+            <md-button class="md-raised md-primary" @click="updateCv">Update</md-button>
+            <md-button class="md-raised md-accent" @click="showEditModal = false">Cancel</md-button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

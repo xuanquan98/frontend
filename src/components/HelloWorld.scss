@@ -99,5 +99,6 @@ button {
   transition: 0.2s ease-in-out;
   letter-spacing: 2px;
 }
-
-
+embed:not(.md-image) {
+  height: 100%;
+}

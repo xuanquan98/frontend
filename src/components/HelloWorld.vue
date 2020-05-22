@@ -12,7 +12,7 @@
       <p class="footer">by <a href="https://github.com/xuanquan98/frontend" target="_blank">Vu Xuan Quan</a></p>
   </div>
     <div class="row" style="height: 100vh" v-if="!showUpload">
-      <div class="col">
+      <div class="col" style="padding-top: 5%; padding-left: 5%">
         <div class="item button-hand" style="--bg-color: #3498db;" >
           <button v-on:click="submitFile()" v-if="showSubmit">Submit</button>
           <div v-if="!showSubmit" style="color: white">
@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="col">
-        <embed v-bind:src = "imagePreview" width="90%" height="100%"/>
+        <embed id = "pdf" v-bind:src = "imagePreview" width = "90%" height = "100%"/>
       </div>
     </div>
   </div>

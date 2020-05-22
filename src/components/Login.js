@@ -5,6 +5,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+import 'vue-material/dist/vue-material.min.css'
+import 'vue-material/dist/theme/default.css'
+
 Vue.use(BootstrapVue, axios, VueAxios)
 
 export default {
@@ -12,7 +15,8 @@ export default {
   data () {
     return {
       username: '',
-      password: ''
+      password: '',
+      isLogin: false
     }
   },
 
@@ -30,11 +34,12 @@ export default {
         .then(response => {
           // handle success
           if (response.data['data'] !== 'Fail') {
-            var data = {'success': true,
-              'username': response.data['data']}
+            let data = {'success': true,
+              'username': response.data['username']}
             this.$store.dispatch('loginSuccess', data)
+            localStorage.setItem('user-token', response.data['data'])
             this.$router.push('showCv')
-          }
+          } else this.isLogin = true
         })
         .catch(function (response) {
           // handle error

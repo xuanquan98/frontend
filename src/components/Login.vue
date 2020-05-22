@@ -6,17 +6,17 @@
   </div>-->
   <div style="background-color: #31c1ef;height: 100vh ">
     <div class="wrapper">
+      <span style="color: red" v-show="isLogin"> Username or password invalid</span>
       <md-field>
         <label>Username</label>
         <md-input v-model="username" ></md-input>
       </md-field>
       <md-field :md-toggle-password="false">
         <label>Password </label>
-        <md-input v-model="password" type="password"></md-input>
+        <md-input v-model="password" type="password" ></md-input>
       </md-field>
       <div>
       <md-button class="md-raised" @click="login">Login</md-button>
-        <label for="file" class="btn-2">upload</label>
       </div>
     </div>
   </div>
